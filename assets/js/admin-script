@@ -1,0 +1,21 @@
+jQuery(document).ready(function ($) {
+    // Select all users functionality
+    $('#select-all-users').change(function () {
+        $('input[name="user_ids[]"]').prop('checked', this.checked);
+    });
+
+    // Toggle subscription options
+    $('input[name="assign_subscription"]').change(function () {
+        $('#subscription_options').toggle(this.checked);
+    });
+
+    // Validate form submission
+    $('form').submit(function (e) {
+        if ($('input[name="assign_subscription"]').is(':checked')) {
+            if (!$('select[name="subscription_product_id"]').val()) {
+                e.preventDefault();
+                alert('Please select a subscription product.');
+            }
+        }
+    });
+});
